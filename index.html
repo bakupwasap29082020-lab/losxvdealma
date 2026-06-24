@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los XV de Alma</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to bottom,#fff5f8,#ffe4ec);
+    color:#333;
+    text-align:center;
+}
+
+header{
+    background:linear-gradient(135deg,#f8c8dc,#d4af37);
+    color:white;
+    padding:60px 20px;
+}
+
+h1{
+    font-size:3em;
+    margin-bottom:10px;
+}
+
+h2{
+    font-weight:normal;
+}
+
+.seccion{
+    padding:40px 20px;
+}
+
+.tarjeta{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.boton{
+    display:inline-block;
+    background:#d4af37;
+    color:white;
+    padding:15px 25px;
+    text-decoration:none;
+    border-radius:30px;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+footer{
+    margin-top:40px;
+    padding:20px;
+    background:#f8c8dc;
+    color:white;
+}
+
+#contador{
+    font-size:2em;
+    color:#d4af37;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Los XV de Alma</h1>
+    <h2>Alma Gutiérrez</h2>
+</header>
+
+<section class="seccion">
+    <div class="tarjeta">
+
+        <h2>✨ Estás invitado ✨</h2>
+
+        <p>
+            Con mucha alegría te invitamos a compartir una noche inolvidable
+            para celebrar los XV años de Alma.
+        </p>
+
+        <h3>📅 Fecha</h3>
+        <p>10 de septiembre de 2026</p>
+
+        <h3>🕣 Hora</h3>
+        <p>20:30 hs</p>
+
+        <h3>📍 Lugar</h3>
+        <p>Star Recepciones</p>
+
+        <a class="boton"
+           href="https://maps.app.goo.gl/Nk3jnLj1DmRLYM8R7"
+           target="_blank">
+           Ver ubicación
+        </a>
+
+        <h3>⏳ Cuenta regresiva</h3>
+        <div id="contador"></div>
+
+    </div>
+</section>
+
+<footer>
+    ¡Te esperamos para celebrar esta noche especial! 💖
+</footer>
+
+<script>
+var fechaEvento = new Date("Sep 10, 2026 20:30:00").getTime();
+
+setInterval(function(){
+
+    var ahora = new Date().getTime();
+    var distancia = fechaEvento - ahora;
+
+    var dias = Math.floor(distancia/(1000*60*60*24));
+    var horas = Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
+    var minutos = Math.floor((distancia%(1000*60*60))/(1000*60));
+    var segundos = Math.floor((distancia%(1000*60))/1000);
+
+    document.getElementById("contador").innerHTML =
+        dias + " días " +
+        horas + " h " +
+        minutos + " m " +
+        segundos + " s";
+
+},1000);
+</script>
+
+</body>
+</html>
