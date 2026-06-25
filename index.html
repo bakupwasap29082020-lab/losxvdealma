@@ -23,6 +23,7 @@ header{
         url('https://bakupwasap29082020-lab.github.io/losxvdealma/alma-portada.png');
     background-size:cover;
     background-position:center;
+    background-repeat:no-repeat;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -44,7 +45,7 @@ header{
 }
 
 h1{
-    font-size:4em;
+    font-size:clamp(2.5em, 6vw, 4em);
     margin:10px 0;
 }
 
@@ -78,6 +79,9 @@ h2{
     border-radius:40px;
     margin:10px;
     font-weight:bold;
+    border:none;
+    cursor:pointer;
+    font-size:1em;
 }
 
 #contador{
@@ -98,9 +102,8 @@ footer{
 
 <body>
 
-<audio id="music" loop>
-     <source src="https://bakupwasap29082020-lab.github.io/losxvdealma/fondo-xv.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" loop preload="auto">
+     <source src="fondo-xv.mp3" type="audio/mpeg">
 
 <header>
     <div class="overlay">
@@ -123,7 +126,7 @@ footer{
         Hoy quiero compartir contigo uno de los más especiales de mi vida.
         </p>
 
-        <h2>📍 Evento</h2>
+        <h2>📍 Te espero</h2>
         <p><b>Star Recepciones</b></p>
         <p>10 de septiembre de 2026</p>
         <p>20:30 hs</p>
@@ -173,7 +176,12 @@ setInterval(function(){
 
     var ahora = new Date().getTime();
     var distancia = fechaEvento - ahora;
-
+    
+ if (distancia < 0) {
+        document.getElementById("contador").innerHTML = "¡La fiesta ya comenzó! 🎉";
+        return;
+      }
+    
     var dias = Math.floor(distancia/(1000*60*60*24));
     var horas = Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
     var minutos = Math.floor((distancia%(1000*60*60))/(1000*60));
@@ -191,7 +199,7 @@ function toggleMusic(){
     var music = document.getElementById("music");
 
     if(music.paused){
-        music.play();
+        music.play().catch(e => console.log("El navegador bloqueó la reproducción automática"));
     }else{
         music.pause();
     }
