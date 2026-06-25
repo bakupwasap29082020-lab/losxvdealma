@@ -6,73 +6,111 @@
 <title>Los XV de Alma</title>
 
 <style>
+*{box-sizing:border-box;}
+
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(to bottom,#fff5f8,#ffe4ec);
-    color:#333;
+    font-family: Georgia, serif;
+    background: linear-gradient(to bottom,#fff7fa,#fdeef4);
+    color:#4a3a3a;
     text-align:center;
 }
 
 header{
-    background:linear-gradient(135deg,#f8c8dc,#d4af37);
+    height:100vh;
+    background:
+        linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)),
+        url('alma-portada.jpg');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.overlay{
     color:white;
-    padding:60px 20px;
+    padding:20px;
+}
+
+.monograma{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.frase{
+    font-size:1.3em;
+    margin-bottom:20px;
 }
 
 h1{
-    font-size:3em;
-    margin-bottom:10px;
+    font-size:4em;
+    margin:10px 0;
 }
 
-h2{
-    font-weight:normal;
+.fecha{
+    font-size:1.4em;
 }
 
 .seccion{
-    padding:40px 20px;
+    padding:60px 20px;
 }
 
 .tarjeta{
-    max-width:700px;
+    max-width:850px;
     margin:auto;
     background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 0 15px rgba(0,0,0,0.1);
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+h2{
+    color:#c79b3b;
 }
 
 .boton{
     display:inline-block;
     background:#d4af37;
     color:white;
-    padding:15px 25px;
+    padding:15px 28px;
     text-decoration:none;
-    border-radius:30px;
-    margin-top:20px;
+    border-radius:40px;
+    margin:10px;
     font-weight:bold;
-}
-
-footer{
-    margin-top:40px;
-    padding:20px;
-    background:#f8c8dc;
-    color:white;
 }
 
 #contador{
     font-size:2em;
     color:#d4af37;
     margin-top:20px;
+    font-weight:bold;
+}
+
+footer{
+    background:#f7d9e4;
+    padding:30px;
+    color:#7b5b5b;
+    margin-top:50px;
 }
 </style>
 </head>
 
 <body>
 
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <header>
-    <h1>Los XV de Alma</h1>
-    <h2>Alma Gutiérrez</h2>
+    <div class="overlay">
+        <div class="monograma">👑 AG</div>
+        <div class="frase">Una noche mágica está por comenzar</div>
+        <h1>Los XV de Alma</h1>
+        <div class="fecha">10 · 09 · 26 — 20:30 hs</div>
+        <br>
+        <button class="boton" onclick="toggleMusic()">▶ Música</button>
+    </div>
 </header>
 
 <section class="seccion">
@@ -81,18 +119,14 @@ footer{
         <h2>✨ Estás invitado ✨</h2>
 
         <p>
-            Con mucha alegría te invitamos a compartir una noche inolvidable
-            para celebrar los XV años de Alma.
+        Hay momentos inolvidables que permanecen para siempre en el corazón.
+        Hoy quiero compartir contigo uno de los más especiales de mi vida.
         </p>
 
-        <h3>📅 Fecha</h3>
+        <h2>📍 Evento</h2>
+        <p><b>Star Recepciones</b></p>
         <p>10 de septiembre de 2026</p>
-
-        <h3>🕣 Hora</h3>
         <p>20:30 hs</p>
-
-        <h3>📍 Lugar</h3>
-        <p>Star Recepciones</p>
 
         <a class="boton"
            href="https://maps.app.goo.gl/Nk3jnLj1DmRLYM8R7"
@@ -100,14 +134,36 @@ footer{
            Ver ubicación
         </a>
 
-        <h3>⏳ Cuenta regresiva</h3>
+        <h2>⏳ Cuenta regresiva</h2>
         <div id="contador"></div>
+
+        <h2>✨ Dress Code</h2>
+        <p><b>Sport elegant</b></p>
+        <p>Viste lo que te haga brillar</p>
+
+        <h2>🎁 Regalos</h2>
+        <p>
+        Tu presencia será mi mejor regalo.<br>
+        Pero si además deseas obsequiarme algo, agradeceré tu cariño
+        a través de una contribución para mis sueños y proyectos futuros.
+        </p>
+
+        <p><b>Banco:</b> Sudameris</p>
+        <p><b>Titular:</b> María Fabiola Riveros</p>
+        <p><b>Alias:</b> 2505225</p>
+
+        <h2>💌 Confirmación</h2>
+
+        <a class="boton"
+           href="https://wa.me/595983713463">
+           Confirmar asistencia
+        </a>
 
     </div>
 </section>
 
 <footer>
-    ¡Te esperamos para celebrar esta noche especial! 💖
+    Gracias por acompañarme en una noche tan especial 💖
 </footer>
 
 <script>
@@ -124,12 +180,22 @@ setInterval(function(){
     var segundos = Math.floor((distancia%(1000*60))/1000);
 
     document.getElementById("contador").innerHTML =
-        dias + " días " +
-        horas + " h " +
-        minutos + " m " +
+        dias + " días • " +
+        horas + " h • " +
+        minutos + " m • " +
         segundos + " s";
 
 },1000);
+
+function toggleMusic(){
+    var music = document.getElementById("music");
+
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+}
 </script>
 
 </body>
